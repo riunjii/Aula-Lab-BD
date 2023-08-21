@@ -1,9 +1,20 @@
 //selecionar o database, caso contrario irá para o test
-use('projetodb')
+use('projetobd')
 //exemplo de um insert
 
 db.fimes.insertOne({    
     "titulo": "Star Wars",
     "ano": 1978,
     "diretor":  "George Lucas"
+})
+
+use('projetobd')
+db.filmes.find()   //select from filmes
+
+use('projetobd')
+db.fimes.insertOne({    
+    "titulo": "👑🦁",
+    "ano": 1994,
+    "diretor":  "Roger ALlers",
+    "titulo-ar": "الأسد الملك"
 })
