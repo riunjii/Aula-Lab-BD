@@ -2,7 +2,7 @@
 use('projetobd')
 //exemplo de um insert
 
-db.fimes.insertOne({    
+db.filmes.insertOne({    
     "titulo": "Star Wars",
     "ano": 1978,
     "diretor":  "George Lucas"
@@ -12,9 +12,25 @@ use('projetobd')
 db.filmes.find()   //select from filmes
 
 use('projetobd')
-db.fimes.insertOne({    
+db.filmes.insertOne({    
     "titulo": "👑🦁",
     "ano": 1994,
     "diretor":  "Roger ALlers",
     "titulo-ar": "الأسد الملك"
 })
+
+//usar o insertmany para inserir array
+
+use('projetobd')
+db.filmes.instertMany([
+    {"titulo": "O Exorcista",                       "ano": 1973,    "diretor": "William Friedkin"},
+    {"titulo": "007 - Sem Tempo para Morrer",       "ano": 2020,    "diretor": "Cary Soji Fukanaga"}
+])
+
+use('projetobd')
+//select titulo, ano from filmes
+db.filmes.find({},{"_id":0, "titulo":1,"ano":1})
+
+use('projetobd')
+//select titulo, ano from filmes where ano="1973"
+db.filmes.find({"ano":1973},{"_id":0, "titulo":1,"ano":1})
