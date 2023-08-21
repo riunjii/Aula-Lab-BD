@@ -1,0 +1,9 @@
+//selecionar o database, caso contrario irá para o test
+use('projetodb')
+//exemplo de um insert
+
+db.fimes.insertOne({    
+    "titulo": "Star Wars",
+    "ano": 1978,
+    "diretor":  "George Lucas"
+})
