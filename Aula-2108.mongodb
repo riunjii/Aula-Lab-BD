@@ -55,3 +55,24 @@ db.filmes.find({"diretor": {$eq: "George Lucas"}},
 use('projetobd')
 db.filmes.find({"ano": {$in: [1973, 1978, 1980]}},
               {_id:0, titulo:1,ano:1})
+
+
+//---------------------//
+//OPERADORES LÓGICOS NO MONGODB
+
+/* titulo e ano dos filmes cujo o titulo é diferente de Guerra na Estrelas e o ano seja maior que 1980 */ 
+use('projetobd')
+db.filmes.find({ $and: [
+    {titulo: {$ne: "Star Wars"}},
+    {ano: {$gt: 1980}}
+]},{_id:0, titulo:1, ano:1})
+
+/* titulo e ano dos filmes cujo o titulo é diferente de Guerra na Estrelas OU o ano seja maior que 1980 */ 
+use('projetobd')
+db.filmes.find({ $or: [
+    {titulo: {$eq: "Star Wars"}},
+    {ano: {$gt: 1980}}
+]},{_id:0, titulo:1, ano:1})
+
+
+
