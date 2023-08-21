@@ -29,11 +29,11 @@ db.filmes.insertMany([
 
 use('projetobd')
 //select titulo, ano from filmes
-db.filmes.find({},{"_id":0, "titulo":1,"ano":1})
+db.filmes.find({},{_id:0, titulo:1,ano:1})
 
 use('projetobd')
 //select titulo, ano from filmes where ano="1973"
-db.filmes.find({"ano":1973},{"_id":0, "titulo":1,"ano":1})
+db.filmes.find({ano:1973},{_id:0, titulo:1,ano:1})
 
 
 //-----------------------//
@@ -74,5 +74,20 @@ db.filmes.find({ $or: [
     {ano: {$gt: 1980}}
 ]},{_id:0, titulo:1, ano:1})
 
+/* Utilizando Expressão Regular nas buscas */
+// i = intensive case
+use('projetobd')
+db.filmes.find({titulo: /star wars/i})
 
+//que comece com sta (usamos o ^ da ER)
+use('projetobd')
+db.filmes.find({titulo: /^sta/i})
 
+//que termine com wars(usamos o $ da ER)
+use('projetobd')
+db.filmes.find({titulo: /wars$/i})
+
+/* SORT */
+use('projetobd')
+db.filmes.find({}, {titulo: 1, ano: 1, _id:0})
+         .sort({titulo: 1}) //1 = ASC  e  //-1 = DESC
