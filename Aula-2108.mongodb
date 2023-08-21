@@ -22,7 +22,7 @@ db.filmes.insertOne({
 //usar o insertmany para inserir array
 
 use('projetobd')
-db.filmes.instertMany([
+db.filmes.insertMany([
     {"titulo": "O Exorcista",                       "ano": 1973,    "diretor": "William Friedkin"},
     {"titulo": "007 - Sem Tempo para Morrer",       "ano": 2020,    "diretor": "Cary Soji Fukanaga"}
 ])
@@ -34,3 +34,24 @@ db.filmes.find({},{"_id":0, "titulo":1,"ano":1})
 use('projetobd')
 //select titulo, ano from filmes where ano="1973"
 db.filmes.find({"ano":1973},{"_id":0, "titulo":1,"ano":1})
+
+
+//-----------------------//
+//operadores de comparação no mongoDB
+
+//titulo e diretor dos filmes dos anos 70
+use('projetobd')
+db.filmes.find({"ano": {$gte: 1970, $lte: 1979}},
+              {_id:0, titulo:1, diretor:1})
+
+
+//ano, titulo e diretor dos filmes cujo diretor seja George Lucas
+use('projetobd')
+db.filmes.find({"diretor": {$eq: "George Lucas"}},
+              {_id:0, titulo:1,ano:1,diretor:1})
+
+
+//TItulo e ano dos filmes que sejam do ano de 1973, 1978 ou 1980
+use('projetobd')
+db.filmes.find({"ano": {$in: [1973, 1978, 1980]}},
+              {_id:0, titulo:1,ano:1})
